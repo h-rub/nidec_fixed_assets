@@ -136,33 +136,17 @@ class _LoginState extends State<Login> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                color: primary,
+                // color: primary,
                 height: heightContainerTop,
                 width: width,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 200,
-                        height: 100,
-                        decoration: BoxDecoration(
-                            //   image: DecorationImage(
-                            //       fit: BoxFit.cover,
-                            //       // image:
-                            //       //     AssetImage('assets/embraco-nidec-color.png')),
-                            ),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        'T-Compliance NGApp',
-                        style: GoogleFonts.poppins(
-                            color: Colors.grey[200],
-                            fontSize: 30,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ],
+                child: Container(
+                  width: double.infinity,
+                  height: 100,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.fitWidth,
+                        image: NetworkImage(
+                            'https://static.turbosquid.com/Preview/2020/05/19__04_38_47/warehouse_logistic_2_lowpoly_render1_0025.jpg30412645-4930-4235-B4F3-2ABBBB547170Large.jpg')),
                   ),
                 ),
               ),
@@ -177,7 +161,7 @@ class _LoginState extends State<Login> {
                             ScrollViewKeyboardDismissBehavior.onDrag,
                         children: <Widget>[
                           Text(
-                            'Bienvenido',
+                            'Iniciar sesión',
                             style: GoogleFonts.poppins(
                                 color: Colors.black,
                                 fontSize: 24,

@@ -1,3 +1,4 @@
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nidec_fixed_assets/providers/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +25,35 @@ class _HomeNavigationState extends State<HomeNavigation> {
       // appBar: AppBar(
       //   title: Text('Home'),
       // ),
+      appBar:
+          // make appbar with logo and title
+          AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            // Image.asset(
+            //   'embraco-logo.svg',
+            //   height: 40,
+            // ),
+            SvgPicture.asset("embraco-logo.svg",
+                semanticsLabel: 'Logo de Embraco'),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              'Fixed Assets',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.grey[100],
+        elevation: 0,
+      ),
+
       body: Pages(),
     );
   }
