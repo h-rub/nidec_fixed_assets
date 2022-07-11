@@ -1,5 +1,6 @@
 import 'package:nidec_fixed_assets/providers/navigation.dart';
 import 'package:nidec_fixed_assets/providers/user.dart';
+import 'package:nidec_fixed_assets/screens/activo/nuevo_activo.dart';
 // import 'package:nidec_fixed_assets/screens/details/shipping_details.dart';
 // import 'package:nidec_fixed_assets/screens/forms/create_form.dart';
 import 'package:nidec_fixed_assets/screens/login/login.dart';
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/login': (context) => LoginPage(),
           '/home': (context) => const HomeNavigation(),
+          "/nuevo-activo": (context) => const NuevoActivo(),
           // '/shipping-details': (context) => ShippingDetails(),
           // 'create': (context) => CreateFormScreeen()
         },

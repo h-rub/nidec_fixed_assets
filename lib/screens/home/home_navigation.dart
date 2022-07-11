@@ -25,8 +25,8 @@ class _HomeNavigationState extends State<HomeNavigation> {
         onPressed: () {},
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      backgroundColor: Colors.grey[100],
-      bottomNavigationBar: NavigationBar(),
+      backgroundColor: Colors.white,
+      bottomNavigationBar: const NavigationBar(),
       // appBar: AppBar(
       //   title: Text('Home'),
       // ),
@@ -34,28 +34,15 @@ class _HomeNavigationState extends State<HomeNavigation> {
           // make appbar with logo and title
           AppBar(
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            // Image.asset(
-            //   'embraco-logo.svg',
-            //   height: 40,
-            // ),
-            SvgPicture.asset("embraco-logo.svg",
-                semanticsLabel: 'Logo de Embraco'),
-            SizedBox(
-              width: 10,
-            ),
-            Text(
-              'Fixed Assets',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            SvgPicture.asset("assets/embraco-logo.svg",
+                semanticsLabel: 'Logo de Embraco', width: 100),
+            const Icon(Icons.person, color: Colors.black)
           ],
         ),
-        centerTitle: true,
-        backgroundColor: Colors.grey[100],
+        // centerTitle: true,
+        backgroundColor: Colors.white,
         elevation: 0,
       ),
 

@@ -30,11 +30,33 @@ TextStyle get bodyGray40 {
 }
 
 TextStyle get subtitle {
-  return GoogleFonts.inter(
-    fontWeight: FontWeight.w400,
-    fontSize: 14,
-    color: Color(0xFF646C7D),
-    height: 1.3,
+  return GoogleFonts.poppins(
+    fontWeight: FontWeight.w500,
+    fontSize: 13,
+    color: grayText,
+  );
+}
+
+TextStyle get heading {
+  return GoogleFonts.poppins(
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+  );
+}
+
+TextStyle get ctaGray {
+  return GoogleFonts.poppins(
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+    color: grayText,
+  );
+}
+
+TextStyle get subheadingPrimary {
+  return GoogleFonts.poppins(
+    color: primary,
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
   );
 }
 

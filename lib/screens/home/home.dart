@@ -17,6 +17,8 @@ import 'package:shimmer_animation/shimmer_animation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
+import "package:intl/intl.dart";
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -76,6 +78,7 @@ class _HomeState extends State<Home> {
     final width = MediaQuery.of(context).size.width;
     // final userInfo = Provider.of<UserInfo>(context);
     // final shippingInfo = Provider.of<ShippingInfo>(context);
+
     return isLoading
         ? HomeLoading(
             height: height,
@@ -93,11 +96,24 @@ class _HomeState extends State<Home> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                            // TODO: Hacerlo dinámico
-                            // "Bienvenido ${userInfo.firstName}",
-                            "Bienvenido USUARIO",
-                            style: body),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                                // TODO: Hacerlo dinámico
+                                // "Bienvenido ${userInfo.firstName}",
+                                DateFormat.yMMMMEEEEd()
+
+                                    // displaying formatted date
+                                    .format(DateTime.now()),
+                                style: subtitle),
+                            Text(
+                                // TODO: Hacerlo dinámico
+                                // "Bienvenido ${userInfo.firstName}",
+                                "Bienvenido USUARIO",
+                                style: subtitle),
+                          ],
+                        ),
                         GestureDetector(
                           onTap: () {
                             print("Actualizar data");
@@ -107,6 +123,7 @@ class _HomeState extends State<Home> {
                           child: Row(
                             children: [
                               IconButton(
+                                iconSize: 24,
                                 color: primary,
                                 tooltip: "Actualizar datos",
                                 icon: const Icon(Icons.update),
@@ -125,13 +142,7 @@ class _HomeState extends State<Home> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 6.0),
-                        child: Text(
-                          "Reportes",
-                          style: GoogleFonts.poppins(
-                            fontSize: 21,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
+                        child: Text("Activos", style: heading),
                       ),
                     ],
                   ),
@@ -166,19 +177,17 @@ class _HomeState extends State<Home> {
                                     //   'assets/truck.svg',
                                     //   color: primary,
                                     // ),
-                                    icon: Icon(Icons.mark_as_unread),
+                                    icon: const Icon(Icons.mark_as_unread,
+                                        size: 32),
                                     onPressed: () {
                                       //TODO: Implementar el acceso al formulario
                                       print("Registrar embarque");
-                                      Navigator.of(context).pushNamed('create');
+                                      Navigator.of(context)
+                                          .pushNamed('nuevo-activo');
                                     }),
                                 Text(
-                                  "Registrar embarque",
-                                  style: GoogleFonts.poppins(
-                                    color: Colors.black54,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                  "Registrar activo",
+                                  style: ctaGray,
                                 )
                               ],
                             )
@@ -187,7 +196,7 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 19),
                   Padding(
                     padding: const EdgeInsets.only(left: 6.0, right: 6.0),
                     child: Row(
@@ -195,7 +204,7 @@ class _HomeState extends State<Home> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Recientemente creado",
+                          "Recientes",
                           style: GoogleFonts.poppins(
                             fontSize: 21,
                             fontWeight: FontWeight.w500,
@@ -207,14 +216,7 @@ class _HomeState extends State<Home> {
                             navigationInfo.currentPage = 1;
                             // TODO Implementar la navegación a historial
                           },
-                          child: Text(
-                            "Ver todo",
-                            style: GoogleFonts.poppins(
-                              color: primary,
-                              fontSize: 13,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
+                          child: Text("Ver todo", style: subheadingPrimary),
                         ),
                       ],
                     ),
@@ -243,7 +245,7 @@ class _HomeState extends State<Home> {
                                   Navigator.pushNamed(
                                       context, '/shipping-details');
                                 },
-                                leading: const Icon(Icons.list),
+                                leading: const Icon(Icons.list, size: 20),
                                 trailing: report['isOk']
                                     ? const Icon(Icons.check_circle,
                                         color: Colors.green)
