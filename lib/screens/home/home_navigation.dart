@@ -49,16 +49,19 @@ class appBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       foregroundColor: primary,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          SvgPicture.asset("assets/embraco-logo.svg",
-              semanticsLabel: 'Logo de Embraco', width: 100),
+      title: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            SvgPicture.asset("assets/embraco-logo.svg",
+                semanticsLabel: 'Logo de Embraco', width: 100),
 
-          SvgPicture.asset("assets/icons/user_profile.svg",
-              semanticsLabel: 'Foto del usuario', width: 32),
-          // const Icon(Icons.person, color: Colors.black)
-        ],
+            SvgPicture.asset("assets/icons/user_profile.svg",
+                semanticsLabel: 'Foto del usuario', width: 32),
+            // const Icon(Icons.person, color: Colors.black)
+          ],
+        ),
       ),
       // centerTitle: true,
       backgroundColor: Colors.white,

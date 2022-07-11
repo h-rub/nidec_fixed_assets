@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:nidec_fixed_assets/providers/navigation.dart';
+import 'package:nidec_fixed_assets/screens/history/history.dart';
 // import 'package:nidec_fixed_assets/providers/shipping_info.dart';
 // import 'package:nidec_fixed_assets/providers/user_info.dart';
 import 'package:nidec_fixed_assets/themes/theme.dart';
@@ -116,6 +117,7 @@ class _HomeState extends State<Home> {
             navigationInfo: navigationInfo,
           )
         : Container(
+            decoration: BoxDecoration(color: bgGray),
             child: Padding(
               padding:
                   const EdgeInsets.only(top: 17.0, left: 14.0, right: 14.0),
@@ -265,37 +267,7 @@ class _HomeState extends State<Home> {
                             // var report = data[position];
 
                             Map activo = data[position];
-                            return Container(
-                              decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10))),
-                              child: ListTile(
-                                onTap: () {
-                                  final box = GetStorage();
-                                  // box.write("shipmentID", report['pk']);
-                                  // TODO: Implementar provider de activos
-                                  // shippingInfo.id = report['pk'];
-                                  // Navigator.pushNamed(
-                                  //     context, '/detalle-activo');
-                                  Navigator.pushNamed(
-                                      context, "/detalle-activo",
-                                      arguments: activo["consecutivo"]);
-                                },
-                                leading: const Icon(Icons.list, size: 20),
-                                // trailing: report['isOk']
-                                //     ? const Icon(Icons.check_circle,
-                                //         color: Colors.green)
-                                //     : const Icon(Icons.warning,
-                                //         color: Colors.yellow),
-                                trailing: const Icon(Icons.check_circle,
-                                    color: Colors.green, size: 20),
-                                title: Text(activo['principal']),
-
-                                subtitle: Text(
-                                    "${activo['descripcion']}-${activo['consecutivo']}"),
-                              ),
-                            );
+                            return ActivoTile(activo);
                           })),
                 ],
               ),
