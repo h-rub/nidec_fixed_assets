@@ -60,11 +60,59 @@ TextStyle get subheadingPrimary {
   );
 }
 
+TextStyle get subheadingDone {
+  return GoogleFonts.poppins(
+    color: done,
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+  );
+}
+
+TextStyle get fieldLabel {
+  return GoogleFonts.poppins(
+    color: grayText,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+}
+
+TextStyle get fieldValue {
+  return GoogleFonts.poppins(
+    color: Colors.black,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+}
+
+TextStyle get fieldValueWarning {
+  return GoogleFonts.poppins(
+    color: warning,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+}
+
+TextStyle get fieldValuePrimary {
+  return GoogleFonts.poppins(
+    color: primary,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+}
+
 TextStyle get minimal {
   return GoogleFonts.inter(
     fontWeight: FontWeight.w400,
     fontSize: 10,
     color: Color(0xFF646C7D),
     height: 1.3,
+  );
+}
+
+////
+ButtonStyle get buttonSecondary {
+  return ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(buttonBgSecondary),
+    foregroundColor: MaterialStateProperty.all(Colors.black),
   );
 }

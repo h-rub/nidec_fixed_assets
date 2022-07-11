@@ -18,6 +18,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 import "package:intl/intl.dart";
+import 'package:intl/date_symbol_data_local.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -69,6 +70,7 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     loadDataHome();
+    initializeDateFormatting('es_MX', null);
   }
 
   @override
@@ -177,8 +179,10 @@ class _HomeState extends State<Home> {
                                     //   'assets/truck.svg',
                                     //   color: primary,
                                     // ),
-                                    icon: const Icon(Icons.mark_as_unread,
-                                        size: 32),
+                                    icon: SvgPicture.asset(
+                                        "assets/icons/reg_active.svg",
+                                        semanticsLabel: 'Foto del usuario',
+                                        width: 32),
                                     onPressed: () {
                                       //TODO: Implementar el acceso al formulario
                                       print("Registrar embarque");
@@ -243,7 +247,7 @@ class _HomeState extends State<Home> {
                                   // TODO: Implementar provider de activos
                                   // shippingInfo.id = report['pk'];
                                   Navigator.pushNamed(
-                                      context, '/shipping-details');
+                                      context, '/detalle-activo');
                                 },
                                 leading: const Icon(Icons.list, size: 20),
                                 trailing: report['isOk']
