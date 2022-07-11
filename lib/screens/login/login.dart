@@ -138,31 +138,35 @@ class _LoginState extends State<Login> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                color: primary,
                 height: heightContainerTop,
                 width: width,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      fit: BoxFit.fill, image: AssetImage('assets/banner.png')),
+                ),
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
+                  padding: const EdgeInsets.only(right: 24.0),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Container(
                         width: 200,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image:
-                                  AssetImage('assets/embraco-nidec-color.png')),
-                        ),
+                        height: 80,
                       ),
-                      SizedBox(height: 10),
                       Text(
-                        'Fixed Assets NGApp',
+                        'Fixed Assets Management',
                         style: GoogleFonts.poppins(
-                            color: Colors.grey[200],
-                            fontSize: 30,
-                            fontWeight: FontWeight.w400),
+                            color: primary,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      Text(
+                        'a Nidec® GA App',
+                        style: GoogleFonts.poppins(
+                            color: Colors.grey,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600),
                       ),
                     ],
                   ),
@@ -179,10 +183,10 @@ class _LoginState extends State<Login> {
                             ScrollViewKeyboardDismissBehavior.onDrag,
                         children: <Widget>[
                           Text(
-                            'Bienvenido',
+                            'Iniciar sesión',
                             style: GoogleFonts.poppins(
                                 color: Colors.black,
-                                fontSize: 24,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w500),
                           ),
                           SizedBox(height: 10),
