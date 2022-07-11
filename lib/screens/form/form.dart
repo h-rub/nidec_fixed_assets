@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nidec_fixed_assets/screens/home/home_navigation.dart';
+import 'package:nidec_fixed_assets/services/save_forms_services.dart';
 import 'package:nidec_fixed_assets/tokens/colors.dart';
 import 'package:nidec_fixed_assets/tokens/typography.dart';
 import 'package:nidec_fixed_assets/widgets/input_model.dart';
@@ -23,25 +25,24 @@ class _CreateFormScreeenState extends State<CreateFormScreeen> {
     super.initState();
   }
 
-  TextEditingController fechaForm = TextEditingController();
-  TextEditingController horaEnrampado = TextEditingController();
-  TextEditingController horaSalida = TextEditingController();
-  TextEditingController lineaCaja = TextEditingController();
-  TextEditingController marcaTractor = TextEditingController();
-  TextEditingController placasTractor = TextEditingController();
-  TextEditingController numeroEconomico = TextEditingController();
+  TextEditingController ubicacion = TextEditingController();
+  TextEditingController area = TextEditingController();
+  TextEditingController linea = TextEditingController();
+  TextEditingController principal = TextEditingController();
+
+  TextEditingController descripcion = TextEditingController();
 
   // CAJA
 
-  TextEditingController numeroCaja = TextEditingController();
-  TextEditingController placasCaja = TextEditingController();
+  TextEditingController marca = TextEditingController();
+  TextEditingController modelo = TextEditingController();
 
   // INGRESOS
 
-  TextEditingController inAutorizadoPor = TextEditingController();
-  TextEditingController inFactura = TextEditingController();
-  TextEditingController inNumeroPallets = TextEditingController();
-  TextEditingController inNumeroSello = TextEditingController();
+  TextEditingController numeroDeSerie = TextEditingController();
+  TextEditingController year = TextEditingController();
+  TextEditingController paisOrigen = TextEditingController();
+  TextEditingController idAdicional = TextEditingController();
   TextEditingController inSelloEntregadoA = TextEditingController();
   bool inTermsSello = false;
   TextEditingController inDestino = TextEditingController();
@@ -50,7 +51,7 @@ class _CreateFormScreeenState extends State<CreateFormScreeen> {
 
   // CHECKLIST
 
-  TextEditingController chFechaHoraLlegada = TextEditingController();
+  TextEditingController numeroPedimento = TextEditingController();
 
   bool _s1 = false, _s2 = false, _s3 = false;
   bool _n1 = false, _n2 = false, _n3 = false;
@@ -78,7 +79,7 @@ class _CreateFormScreeenState extends State<CreateFormScreeen> {
                       height: 10,
                     ),
                     Input(
-                      controller: lineaCaja,
+                      controller: ubicacion,
                       hintText: "",
                       label: "Ubicación",
                       inputAction: TextInputAction.next,
@@ -90,7 +91,7 @@ class _CreateFormScreeenState extends State<CreateFormScreeen> {
                         Container(
                           width: MediaQuery.of(context).size.width / 2.7,
                           child: Input(
-                            controller: marcaTractor,
+                            controller: area,
                             hintText: "",
                             label: "Área",
                             inputAction: TextInputAction.next,
@@ -99,7 +100,7 @@ class _CreateFormScreeenState extends State<CreateFormScreeen> {
                         Container(
                           width: MediaQuery.of(context).size.width / 2.7,
                           child: Input(
-                            controller: placasTractor,
+                            controller: linea,
                             hintText: "",
                             label: "Línea",
                             inputAction: TextInputAction.next,
@@ -111,7 +112,7 @@ class _CreateFormScreeenState extends State<CreateFormScreeen> {
                       height: 8,
                     ),
                     Input(
-                      controller: numeroEconomico,
+                      controller: principal,
                       hintText: "",
                       label: "Principal",
                       inputAction: TextInputAction.next,
@@ -120,7 +121,7 @@ class _CreateFormScreeenState extends State<CreateFormScreeen> {
                       height: 10,
                     ),
                     Input(
-                      controller: lineaCaja,
+                      controller: descripcion,
                       hintText: "",
                       label: "Descripción",
                       inputAction: TextInputAction.next,
@@ -132,7 +133,7 @@ class _CreateFormScreeenState extends State<CreateFormScreeen> {
                         Container(
                           width: MediaQuery.of(context).size.width / 2.7,
                           child: Input(
-                            controller: numeroCaja,
+                            controller: marca,
                             hintText: "",
                             label: "Marca",
                             inputAction: TextInputAction.next,
@@ -141,7 +142,7 @@ class _CreateFormScreeenState extends State<CreateFormScreeen> {
                         Container(
                           width: MediaQuery.of(context).size.width / 2.7,
                           child: Input(
-                            controller: placasCaja,
+                            controller: modelo,
                             hintText: "",
                             label: "Modelo",
                             inputAction: TextInputAction.next,
@@ -153,7 +154,7 @@ class _CreateFormScreeenState extends State<CreateFormScreeen> {
                       height: 10,
                     ),
                     Input(
-                      controller: inAutorizadoPor,
+                      controller: numeroDeSerie,
                       hintText: "",
                       label: "Número de serie",
                       inputAction: TextInputAction.next,
@@ -165,7 +166,7 @@ class _CreateFormScreeenState extends State<CreateFormScreeen> {
                         Container(
                           width: MediaQuery.of(context).size.width / 2.7,
                           child: Input(
-                            controller: inFactura,
+                            controller: year,
                             hintText: "",
                             label: "Año",
                             inputAction: TextInputAction.next,
@@ -174,7 +175,7 @@ class _CreateFormScreeenState extends State<CreateFormScreeen> {
                         Container(
                           width: MediaQuery.of(context).size.width / 2.7,
                           child: Input(
-                            controller: inNumeroPallets,
+                            controller: paisOrigen,
                             hintText: "",
                             label: "País de origen",
                             inputAction: TextInputAction.next,
@@ -184,9 +185,9 @@ class _CreateFormScreeenState extends State<CreateFormScreeen> {
                     ),
                     SizedBox(height: 8),
                     Input(
-                      controller: inNumeroSello,
+                      controller: idAdicional,
                       hintText: "",
-                      label: "ID Adicional",
+                      label: "Información Adicional",
                       inputAction: TextInputAction.next,
                     ),
                   ],
@@ -210,7 +211,7 @@ class _CreateFormScreeenState extends State<CreateFormScreeen> {
                     height: 10,
                   ),
                   Input(
-                    controller: chFechaHoraLlegada,
+                    controller: numeroPedimento,
                     hintText: "",
                     label: "Número de pedimento",
                     inputAction: TextInputAction.next,
@@ -260,13 +261,31 @@ class _CreateFormScreeenState extends State<CreateFormScreeen> {
             type: StepperType.horizontal,
             currentStep: _activeStepIndex,
             steps: stepList(),
-            onStepContinue: () {
+            onStepContinue: () async {
               if (_activeStepIndex < (stepList().length - 1)) {
                 setState(() {
                   _activeStepIndex += 1;
                 });
               } else {
-                print('Submited');
+                if (await saveAsset(
+                    "1",
+                    "1",
+                    "4",
+                    numeroPedimento.text,
+                    principal.text,
+                    descripcion.text,
+                    marca.text,
+                    modelo.text,
+                    numeroDeSerie.text,
+                    idAdicional.text,
+                    year.text,
+                    paisOrigen.text,
+                    "")) {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => HomeNavigation()),
+                      (Route<dynamic> route) => false);
+                }
               }
             },
             onStepCancel: () {
