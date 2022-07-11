@@ -116,6 +116,7 @@ class _LoginState extends State<Login> {
       });
       print("No existe el usuario");
       showAlertDialog("Error", "Email o contraseña incorrectos", context);
+      EasyLoading.dismiss();
     } else if (res.statusCode == 500) {
       EasyLoading.showError("Ups! Ocurrió un error...",
           duration: const Duration(milliseconds: 3000));
@@ -130,6 +131,7 @@ class _LoginState extends State<Login> {
     final width = MediaQuery.of(context).size.width;
     final userInfo = Provider.of<UserInfo>(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -148,15 +150,15 @@ class _LoginState extends State<Login> {
                         width: 200,
                         height: 100,
                         decoration: BoxDecoration(
-                            //   image: DecorationImage(
-                            //       fit: BoxFit.cover,
-                            //       // image:
-                            //       //     AssetImage('assets/embraco-nidec-color.png')),
-                            ),
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image:
+                                  AssetImage('assets/embraco-nidec-color.png')),
+                        ),
                       ),
                       SizedBox(height: 10),
                       Text(
-                        'T-Compliance NGApp',
+                        'Fixed Assets NGApp',
                         style: GoogleFonts.poppins(
                             color: Colors.grey[200],
                             fontSize: 30,
@@ -167,7 +169,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
               Container(
-                  color: Colors.grey[100],
+                  color: Colors.white,
                   width: MediaQuery.of(context).size.width,
                   height: height - heightContainerTop,
                   child: Padding(
@@ -224,9 +226,9 @@ class _LoginState extends State<Login> {
                                     // // Call login service
                                     // signIn(_emailController.text,
                                     //     _passwordController.text, userInfo);
-                                    print("Login");
-                                signIn(_emailController.text,
-                                    _passwordController.text, userInfo);
+
+                                    signIn(_emailController.text,
+                                        _passwordController.text, userInfo);
                               },
                               child: Text(
                                 'Iniciar sesión',

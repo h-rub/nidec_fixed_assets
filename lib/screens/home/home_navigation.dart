@@ -19,6 +19,11 @@ class _HomeNavigationState extends State<HomeNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.qr_code),
+        onPressed: () {},
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       backgroundColor: Colors.grey[100],
       bottomNavigationBar: NavigationBar(),
       // appBar: AppBar(
@@ -77,17 +82,11 @@ class NavigationBar extends StatelessWidget {
     return BottomNavigationBar(
       currentIndex: navigationInfo.currentPage,
       onTap: (index) {
-        if (index == 2) {
-          print("Cerrar sesión");
-        } else {
-          navigationInfo.currentPage = index;
-        }
+        navigationInfo.currentPage = index;
       },
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Inicio"),
         BottomNavigationBarItem(icon: Icon(Icons.history), label: "Historial"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.logout), label: "Cerrar sesión")
       ],
     );
   }

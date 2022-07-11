@@ -37,3 +37,12 @@ TextStyle get subtitle {
     height: 1.3,
   );
 }
+
+TextStyle get minimal {
+  return GoogleFonts.inter(
+    fontWeight: FontWeight.w400,
+    fontSize: 10,
+    color: Color(0xFF646C7D),
+    height: 1.3,
+  );
+}
