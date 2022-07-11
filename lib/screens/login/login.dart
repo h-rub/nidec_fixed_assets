@@ -116,6 +116,7 @@ class _LoginState extends State<Login> {
       });
       print("No existe el usuario");
       showAlertDialog("Error", "Email o contraseña incorrectos", context);
+      EasyLoading.dismiss();
     } else if (res.statusCode == 500) {
       EasyLoading.showError("Ups! Ocurrió un error...",
           duration: const Duration(milliseconds: 3000));
@@ -130,28 +131,49 @@ class _LoginState extends State<Login> {
     final width = MediaQuery.of(context).size.width;
     final userInfo = Provider.of<UserInfo>(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                // color: primary,
                 height: heightContainerTop,
                 width: width,
-                child: Container(
-                  width: double.infinity,
-                  height: 100,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: NetworkImage(
-                            'https://static.turbosquid.com/Preview/2020/05/19__04_38_47/warehouse_logistic_2_lowpoly_render1_0025.jpg30412645-4930-4235-B4F3-2ABBBB547170Large.jpg')),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      fit: BoxFit.fill, image: AssetImage('assets/banner.png')),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 24.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Container(
+                        width: 200,
+                        height: 80,
+                      ),
+                      Text(
+                        'Fixed Assets Management',
+                        style: GoogleFonts.poppins(
+                            color: primary,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      Text(
+                        'a Nidec® GA App',
+                        style: GoogleFonts.poppins(
+                            color: Colors.grey,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ],
                   ),
                 ),
               ),
               Container(
-                  color: Colors.grey[100],
+                  color: Colors.white,
                   width: MediaQuery.of(context).size.width,
                   height: height - heightContainerTop,
                   child: Padding(
@@ -164,7 +186,7 @@ class _LoginState extends State<Login> {
                             'Iniciar sesión',
                             style: GoogleFonts.poppins(
                                 color: Colors.black,
-                                fontSize: 24,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w500),
                           ),
                           SizedBox(height: 10),
@@ -208,9 +230,9 @@ class _LoginState extends State<Login> {
                                     // // Call login service
                                     // signIn(_emailController.text,
                                     //     _passwordController.text, userInfo);
-                                    print("Login");
-                                signIn(_emailController.text,
-                                    _passwordController.text, userInfo);
+
+                                    signIn(_emailController.text,
+                                        _passwordController.text, userInfo);
                               },
                               child: Text(
                                 'Iniciar sesión',
