@@ -20,6 +20,33 @@ import 'package:http/http.dart' as http;
 import "package:intl/intl.dart";
 import 'package:intl/date_symbol_data_local.dart';
 
+// GET /api/fa/list-last-five
+
+// HTTP 200 OK
+// Allow: GET, HEAD, OPTIONS
+// Content-Type: application/json
+// Vary: Accept
+
+// [
+//     {
+//         "id": 1,
+//         "consecutivo": "LC1",
+//         "ubicacion_id": 1,
+//         "area_id": 1,
+//         "linea_id": 4,
+//         "n_activo_sap": "30000012",
+//         "n_pedimento": "",
+//         "principal": "Prensa 1",
+//         "descripcion": "PRENSA",
+//         "marca": "ROVETTA",
+//         "modelo": "SM",
+//         "n_serie": "SS",
+//         "id_adicional": "MATRICULA: 2497",
+//         "año": null,
+//         "pais_origen": ""
+//     }
+// ]
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -39,10 +66,11 @@ class _HomeState extends State<Home> {
 
     Map<String, String> requestHeaders = {
       'Accept': 'application/json',
-      'apikey': 'cFmS80yo.noGef99U2EGqhARloqbE1qEhDFKVLIih'
+      // 'apikey': 'cFmS80yo.noGef99U2EGqhARloqbE1qEhDFKVLIih'
     };
 
-    String url = "https://api.embraco.com/ctpat/forms/forms/all";
+    String url = "http://fa.syncronik.com/api/fa/list-last-five";
+
     print(url);
     dynamic jsonResponse;
     http.Response res = await http.get(Uri.parse(url), headers: requestHeaders);
@@ -234,7 +262,9 @@ class _HomeState extends State<Home> {
                           },
                           itemCount: data.length,
                           itemBuilder: (BuildContext context, position) {
-                            var report = data[position];
+                            // var report = data[position];
+
+                            Map activo = data[position];
                             return Container(
                               decoration: const BoxDecoration(
                                   color: Colors.white,
@@ -243,21 +273,27 @@ class _HomeState extends State<Home> {
                               child: ListTile(
                                 onTap: () {
                                   final box = GetStorage();
-                                  box.write("shipmentID", report['pk']);
+                                  // box.write("shipmentID", report['pk']);
                                   // TODO: Implementar provider de activos
                                   // shippingInfo.id = report['pk'];
+                                  // Navigator.pushNamed(
+                                  //     context, '/detalle-activo');
                                   Navigator.pushNamed(
-                                      context, '/detalle-activo');
+                                      context, "/detalle-activo",
+                                      arguments: activo["consecutivo"]);
                                 },
                                 leading: const Icon(Icons.list, size: 20),
-                                trailing: report['isOk']
-                                    ? const Icon(Icons.check_circle,
-                                        color: Colors.green)
-                                    : const Icon(Icons.warning,
-                                        color: Colors.yellow),
-                                title: Text("Destino: \n${report['destino']}"),
+                                // trailing: report['isOk']
+                                //     ? const Icon(Icons.check_circle,
+                                //         color: Colors.green)
+                                //     : const Icon(Icons.warning,
+                                //         color: Colors.yellow),
+                                trailing: const Icon(Icons.check_circle,
+                                    color: Colors.green, size: 20),
+                                title: Text(activo['principal']),
+
                                 subtitle: Text(
-                                    "${report['placas_tractor']}-${report['placas_caja']}"),
+                                    "${activo['descripcion']}-${activo['consecutivo']}"),
                               ),
                             );
                           })),

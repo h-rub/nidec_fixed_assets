@@ -13,22 +13,21 @@ class DetalleActivo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String consecutivo = "LC1";
-    String url =
-        "http://fa.syncronik.com/api/fa/detail-a-f?consecutivo=$consecutivo";
+    // String consecutivo = "LC1";
+    String url = "http://fa.syncronik.com/api/fa/detail-a-f?consecutivo=";
 
-    Future data = fetchJson(url);
+    final arg = ModalRoute.of(context)?.settings.arguments;
 
-    //   final arg = ModalRoute.of(context)?.settings.arguments;
+    final parsedArg = arg.toString().isNotEmpty ? arg.toString() : "";
 
-    // final parsedArg = arg.toString().isNotEmpty ? arg.toString() : "";
+    final String finalUrl;
+    if (parsedArg.isNotEmpty && arg != null) {
+      finalUrl = url + parsedArg;
+    } else {
+      finalUrl = url;
+    }
 
-    // final String finalUrl;
-    // if (parsedArg.isNotEmpty && arg != null) {
-    //   finalUrl = apiUrl + parsedArg;
-    // } else {
-    //   finalUrl = apiUrl;
-    // }
+    Future data = fetchJson(finalUrl);
 
     return Scaffold(
         appBar: const appBar(),
