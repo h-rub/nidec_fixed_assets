@@ -29,8 +29,45 @@ class DetalleActivo extends StatelessWidget {
 
     Future data = fetchJson(finalUrl);
 
+    //   final arg = ModalRoute.of(context)?.settings.arguments;
+
+    // final parsedArg = arg.toString().isNotEmpty ? arg.toString() : "";
+
+    // final String finalUrl;
+    // if (parsedArg.isNotEmpty && arg != null) {
+    //   finalUrl = apiUrl + parsedArg;
+    // } else {
+    //   finalUrl = apiUrl;
+    // }
+
     return Scaffold(
-        appBar: const appBar(),
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: primary),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          backgroundColor: Colors.white,
+          brightness: Brightness.light,
+          elevation: 0,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(
+                width: 100,
+                height: 50,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/nidec-embraco.png')),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: Text("Detalles del activo", style: heading2Primary),
+              )
+            ],
+          ),
+        ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: ListView(children: [
@@ -41,7 +78,7 @@ class DetalleActivo extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('EMB0001', style: heading),
+                      Text("Activo: $parsedArg", style: heading),
                       Text("Conciliación completa", style: subheadingDone)
                     ],
                   ),

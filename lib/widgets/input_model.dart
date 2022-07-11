@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 
 class Input extends StatelessWidget {
   // final Color color;
-  final Icon icon;
-  final Icon prefixIcon;
-  final String label;
-  final String hintText;
-  final TextInputType keyboardType;
-  final TextEditingController controller;
+  final Icon? icon;
+  final Icon? prefixIcon;
+  final String? label;
+  final String? hintText;
+  final TextInputType? keyboardType;
+  final TextEditingController? controller;
   final validator;
   final autofillHint;
   final isRequired;
@@ -19,12 +19,12 @@ class Input extends StatelessWidget {
   const Input(
       {Key? key,
       // required this.color,
-      required this.icon,
-      required this.prefixIcon,
-      required this.label,
-      required this.hintText,
-      required this.keyboardType,
-      required this.controller,
+      this.icon,
+      this.prefixIcon,
+      this.label,
+      this.hintText,
+      this.keyboardType,
+      this.controller,
       this.validator,
       this.autofillHint,
       this.isRequired,

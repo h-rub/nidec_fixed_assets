@@ -2,6 +2,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nidec_fixed_assets/providers/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:nidec_fixed_assets/tokens/colors.dart';
+import 'package:nidec_fixed_assets/tokens/typography.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 
@@ -18,23 +20,57 @@ class HomeNavigation extends StatefulWidget {
 }
 
 class _HomeNavigationState extends State<HomeNavigation> {
+  Future<PermissionStatus> _getCameraPermission() async {
+    var status = await Permission.camera.status;
+    if (!status.isGranted) {
+      final result = await Permission.camera.request();
+      return result;
+    } else {
+      return status;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.qr_code),
-        onPressed: () {},
+        onPressed: () async {
+          PermissionStatus status = await _getCameraPermission();
+          Navigator.of(context).pushNamed("/read_qr");
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       backgroundColor: Colors.white,
-      bottomNavigationBar: const NavigationBar(),
+      bottomNavigationBar: NavigationBar(),
       // appBar: AppBar(
       //   title: Text('Home'),
       // ),
       appBar:
           // make appbar with logo and title
-          appBar(),
-
+          AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            // Image.asset(
+            //   'embraco-logo.svg',
+            //   height: 40,
+            // ),
+            SvgPicture.asset("assets/embraco-logo.svg",
+                semanticsLabel: 'Logo de Embraco', width: 100),
+            SizedBox(
+              width: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 10.0),
+              child: Text("FA Management", style: heading2Primary),
+            )
+          ],
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
       body: Pages(),
     );
   }
@@ -120,6 +156,7 @@ class NavigationBar extends StatelessWidget {
     final navigationInfo = Provider.of<NavigationInfo>(context);
 
     return BottomNavigationBar(
+      backgroundColor: Colors.white,
       currentIndex: navigationInfo.currentPage,
       onTap: (index) {
         navigationInfo.currentPage = index;

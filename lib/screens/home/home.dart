@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:nidec_fixed_assets/providers/navigation.dart';
 import 'package:nidec_fixed_assets/screens/history/history.dart';
+import 'package:nidec_fixed_assets/providers/user.dart';
 // import 'package:nidec_fixed_assets/providers/shipping_info.dart';
 // import 'package:nidec_fixed_assets/providers/user_info.dart';
 import 'package:nidec_fixed_assets/themes/theme.dart';
@@ -107,7 +108,7 @@ class _HomeState extends State<Home> {
     final navigationInfo = Provider.of<NavigationInfo>(context);
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    // final userInfo = Provider.of<UserInfo>(context);
+    final userInfo = Provider.of<UserInfo>(context);
     // final shippingInfo = Provider.of<ShippingInfo>(context);
 
     return isLoading
@@ -142,7 +143,7 @@ class _HomeState extends State<Home> {
                             Text(
                                 // TODO: Hacerlo dinámico
                                 // "Bienvenido ${userInfo.firstName}",
-                                "Bienvenido USUARIO",
+                                "Bienvenido ${userInfo.firstName}",
                                 style: subtitle),
                           ],
                         ),
@@ -183,7 +184,7 @@ class _HomeState extends State<Home> {
                     onTap: () {
                       //TODO: Implementar el acceso al formulario
                       print("Registrar embarque");
-                      Navigator.of(context).pushNamed('create');
+                      Navigator.of(context).pushNamed('/nuevo-activo');
                     },
                     child: Container(
                       height: height / 7.5,
@@ -217,7 +218,7 @@ class _HomeState extends State<Home> {
                                       //TODO: Implementar el acceso al formulario
                                       print("Registrar embarque");
                                       Navigator.of(context)
-                                          .pushNamed('nuevo-activo');
+                                          .pushNamed('/nuevo-activo');
                                     }),
                                 Text(
                                   "Registrar activo",

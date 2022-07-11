@@ -6,6 +6,8 @@ import 'package:nidec_fixed_assets/providers/navigation.dart';
 import 'package:nidec_fixed_assets/screens/activo/detalle_activo.dart';
 import 'package:nidec_fixed_assets/screens/history/history.dart';
 // import 'package:nidec_fixed_assets/screens/form/form.dart';
+import 'package:nidec_fixed_assets/screens/form/form.dart';
+import 'package:nidec_fixed_assets/screens/history/history_page.dart';
 import 'package:nidec_fixed_assets/screens/home/home.dart';
 import 'package:nidec_fixed_assets/screens/scan_qr/scan_qr.dart';
 import 'package:provider/provider.dart';
@@ -23,8 +25,11 @@ class _PagesState extends State<Pages> {
     final navigationInfo = Provider.of<NavigationInfo>(context);
     return PageView(
       controller: navigationInfo.pageController,
-      physics: const NeverScrollableScrollPhysics(),
-      children: [Home(), Historial(), ScanQr(), DetalleActivo()],
+      physics: NeverScrollableScrollPhysics(),
+      children: [
+        Home(),
+        HistoryPage(),
+      ],
     );
   }
 }
