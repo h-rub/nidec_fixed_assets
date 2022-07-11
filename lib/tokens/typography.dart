@@ -69,6 +69,46 @@ TextStyle get subheadingPrimary {
   );
 }
 
+TextStyle get subheadingDone {
+  return GoogleFonts.poppins(
+    color: done,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
+}
+
+TextStyle get fieldLabel {
+  return GoogleFonts.poppins(
+    color: Colors.black,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
+}
+
+TextStyle get fieldValue {
+  return GoogleFonts.poppins(
+    color: grayText,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+}
+
+TextStyle get fieldValueWarning {
+  return GoogleFonts.poppins(
+    color: warning,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+}
+
+TextStyle get fieldValuePrimary {
+  return GoogleFonts.poppins(
+    color: primary,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+}
+
 TextStyle get minimal {
   return GoogleFonts.inter(
     fontWeight: FontWeight.w400,
@@ -88,5 +128,13 @@ TextStyle get heading2Black {
     fontWeight: FontWeight.w600,
     fontSize: 16,
     color: Colors.black,
+  );
+}
+
+////
+ButtonStyle get buttonSecondary {
+  return ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(buttonBgSecondary),
+    foregroundColor: MaterialStateProperty.all(Colors.black),
   );
 }

@@ -87,7 +87,11 @@ class _ScanQrState extends State<ScanQr> {
                             Padding(
                               padding: EdgeInsets.only(top: 20, bottom: 20),
                               child: MaterialButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, '/detalle-activo',
+                                      arguments: result!.code);
+                                },
                                 child: Text(
                                   'Consultar detalles del activo',
                                 ),

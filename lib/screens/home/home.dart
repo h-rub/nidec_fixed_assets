@@ -42,7 +42,7 @@ class _HomeState extends State<Home> {
       'apikey': 'cFmS80yo.noGef99U2EGqhARloqbE1qEhDFKVLIih'
     };
 
-    String url = "https://api.embraco.com/ctpat/forms/forms/all";
+    String url = "http://fa.syncronik.com/api/fa/list-last-five";
     print(url);
     dynamic jsonResponse;
     http.Response res = await http.get(Uri.parse(url), headers: requestHeaders);
@@ -222,13 +222,11 @@ class _HomeState extends State<Home> {
                   Expanded(
                       child: ListView.separated(
                           separatorBuilder: (BuildContext context, int index) {
-                            return const SizedBox(
-                              height: 10,
-                            );
+                            return const SizedBox(height: 10, child: Divider());
                           },
                           itemCount: data.length,
                           itemBuilder: (BuildContext context, position) {
-                            var report = data[position];
+                            Map activo = data[position];
                             return Container(
                               decoration: const BoxDecoration(
                                   color: Colors.white,
@@ -237,21 +235,22 @@ class _HomeState extends State<Home> {
                               child: ListTile(
                                 onTap: () {
                                   final box = GetStorage();
-                                  box.write("shipmentID", report['pk']);
+
                                   // TODO: Implementar provider de activos
                                   // shippingInfo.id = report['pk'];
                                   Navigator.pushNamed(
-                                      context, '/shipping-details');
+                                      context, '/detalle-activo',
+                                      arguments: activo["consecutivo"]);
                                 },
-                                leading: const Icon(Icons.list, size: 20),
-                                trailing: report['isOk']
+                                leading: const Icon(Icons.list_alt),
+                                trailing: activo['is_consiliacion_completa']
                                     ? const Icon(Icons.check_circle,
                                         color: Colors.green)
                                     : const Icon(Icons.warning,
                                         color: Colors.yellow),
-                                title: Text("Destino: \n${report['destino']}"),
+                                title: Text(activo['principal']),
                                 subtitle: Text(
-                                    "${report['placas_tractor']}-${report['placas_caja']}"),
+                                    "${activo['descripcion']}-${activo['consecutivo']}"),
                               ),
                             );
                           })),

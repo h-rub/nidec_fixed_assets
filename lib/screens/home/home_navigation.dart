@@ -62,7 +62,7 @@ class _HomeNavigationState extends State<HomeNavigation> {
             ),
             Padding(
               padding: const EdgeInsets.only(right: 10.0),
-              child: Text("FA Management", style: subheadingPrimary),
+              child: Text("FA Management", style: heading2Primary),
             )
           ],
         ),

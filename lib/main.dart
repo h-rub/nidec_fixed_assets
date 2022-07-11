@@ -1,5 +1,6 @@
 import 'package:nidec_fixed_assets/providers/navigation.dart';
 import 'package:nidec_fixed_assets/providers/user.dart';
+import 'package:nidec_fixed_assets/screens/activo/detalle_activo.dart';
 import 'package:nidec_fixed_assets/screens/activo/nuevo_activo.dart';
 import 'package:nidec_fixed_assets/screens/form/form.dart';
 // import 'package:nidec_fixed_assets/screens/details/shipping_details.dart';
@@ -74,6 +75,7 @@ class MyApp extends StatelessWidget {
           // 'create': (context) => CreateFormScreeen()
           "/read_qr": (context) => const ScanQr(),
           "/nuevo-activo": (context) => CreateFormScreeen(),
+          "/detalle-activo": (context) => DetalleActivo(),
         },
       ),
     );
